@@ -1,0 +1,30 @@
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+httpx>=0.26.0
+slowapi>=0.1.9
+python-dotenv>=1.0.0
+python-multipart>=0.0.9
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# YOLOv8 (yolov8n_balanced best.pt)
+# CPU-only torch keeps the deploy image small on hosts without GPUs
+# (Render web services, Fly machines, etc). Without this, pip pulls
+# nvidia-cublas/cudnn/cusparse wheels — several GB and unused on CPU,
+# bloating cold start past PaaS port-scan timeouts.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2.0
+torchvision>=0.17.0
+ultralytics>=8.0.0,<9.0.0
+Pillow>=10.0.0
+opencv-python-headless>=4.8.0
+numpy>=1.24.0
+
+# Cost estimation (v4 GradientBoosting pipeline)
+# sklearn must match the version the .joblib was trained with (1.6.x).
+joblib>=1.3.0
+pandas>=2.0.0
+scikit-learn>=1.6,<1.7
+
+# Observability
+prometheus_client>=0.20.0
